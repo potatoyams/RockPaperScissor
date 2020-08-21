@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock & Paper & Scissor</title>
+    </head>
+    <body>
+        <h1>See Console</h1>
+        <script>
+            function computerPlay() {
+                items = ["rock", "paper", "scissor"];
+                return items[Math.floor(Math.random() * items.length)];
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                if (playerSelection === computerSelection) {
+                    console.log("You've Tied");
+                    return 0;
+                } else {
+                    if (playerSelection === "rock" && computerSelection === "paper") {
+                        console.log("You Lose! Paper beats Rock");
+                        return -1;
+                    } else if (playerSelection === "rock" && computerSelection === "scissor") {
+                        console.log("You Won! Rock beats Paper");
+                        return 1;
+                    } else if (playerSelection === "paper" && computerSelection === "scissor") {
+                        console.log("You Lose! Scissor beats Paper");
+                        return -1;
+                    } else if (playerSelection === "paper" && computerSelection === "rock") {
+                        console.log("You Won! Paper beats Rock");
+                        return 1;
+                    } else if (playerSelection === "scissor" && computerSelection === "paper") {
+                        console.log("You Won! Scissor beats Paper");
+                        return 1;
+                    } else if (playerSelection === "scissor" && computerSelection === "rock") {
+                        console.log("You Lose! Rock beats Scissor");
+                        return -1;
+                    }
+                }
+            }
+
+            function game() {
+                var numPlayerWon = 0;
+                var numCompWon = 0;
+                for (var i = 0; i < 5; i++) {
+                    var playerSelection = "";
+                    while (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissor") {
+                        playerSelection = prompt("Pick between rock, paper, and scissor");
+                        playerSelection = playerSelection.toLowerCase();
+                    }
+                    var result = playRound(playerSelection, computerPlay());
+                    if (result === 1) {
+                        numPlayerWon++;
+                    } else if (result === -1) {
+                        numCompWon++;
+                    }
+                }
+                console.log("Out of 5 games, you won: " + numPlayerWon + " and computer won: " + numCompWon);
+            }
+
+            game();
+        </script>
+    </body>
+</html>
